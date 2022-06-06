@@ -12,6 +12,10 @@ const listSchema = mongoose.Schema({
     required: false,
     default: '',
   },
+  position: {
+    type: types.Number,
+    required: true,
+  },
 });
 
 const List = mongoose.model('List', listSchema);
