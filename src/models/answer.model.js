@@ -12,6 +12,10 @@ const answerSchema = mongoose.Schema({
     required: true,
     defautl: false,
   },
+  position: {
+    type: types.Number,
+    required: true,
+  },
 });
 
 const Answer = mongoose.model('Answer', answerSchema);
