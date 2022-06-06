@@ -1,4 +1,4 @@
-const { list } = require("../models");
+const { list } = require('../models');
 
 const create = async (listBody) => {
   return await list.create(listBody);
