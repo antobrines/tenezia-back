@@ -29,6 +29,31 @@ const userSchema = mongoose.Schema({
     type: types.Boolean,
     required: true,
     default: false
+  },
+  age: {
+    type: types.Number,
+    required: false,
+    default: 0
+  },
+  hoursPlayed: {
+    type: types.Number,
+    required: false,
+    default: 0
+  },
+  lastServer: {
+    type: types.String,
+    required: false,
+    default: ''
+  },
+  daysPlayed: {
+    type: types.Array,
+    required: false,
+    default: []
+  },
+  knowServer: {
+    type: types.Array,
+    required: false,
+    default: []
   }
 });
 
