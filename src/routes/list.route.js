@@ -6,5 +6,7 @@ const router = express.Router();
 router.post('/', validate(), listController.create);
 router.get('/', validate(), listController.getAll);
 router.patch('/:id', validate(), listController.changePosition);
+router.get('/:id/questions', validate(), listController.getQuestionFromListId);
+
 
 module.exports = router;

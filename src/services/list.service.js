@@ -1,4 +1,4 @@
-const { List } = require('../models');
+const { List, Question } = require('../models');
 
 const create = async (listBody) => {
   return await List.create(listBody);
@@ -13,7 +13,8 @@ const updateOne = async (id, listBody) => {
 };
 
 const getAll = async () => {
-  return await List.find({});
+  // order by position
+  return await List.find({}).sort({ position: 1 });
 };
 
 const changePosition = async (id, position) => {
@@ -37,10 +38,17 @@ const changePosition = async (id, position) => {
     });
 };
 
+const getQuestionFromListId = async (idList) => {
+  return await Question.find({
+    idList: idList,
+  });
+};
+
 module.exports = {
   create,
   getOne,
   updateOne,
   getAll,
   changePosition,
+  getQuestionFromListId,
 };

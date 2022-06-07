@@ -27,9 +27,15 @@ const getAll = catchAsync(async (req, res, next) => {
   successF('Lists', lists, httpStatus.OK, res, next);
 });
 
+const getQuestionFromListId = catchAsync(async (req, res, next) => {
+  const questions = await listService.getQuestionFromListId(req.params.id);
+  successF('Questions', questions, httpStatus.OK, res, next);
+});
+
 module.exports = {
   create,
   update,
   changePosition,
   getAll,
+  getQuestionFromListId,
 };

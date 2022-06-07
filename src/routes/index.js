@@ -3,6 +3,7 @@ const express = require('express');
 const userRoute = require('./user.route');
 const discordRoute = require('./discord.route');
 const listRoute = require('./list.route');
+const questionRoute = require('./question.route');
 const router = express.Router();
 
 const defaultRoutes = [
@@ -17,6 +18,10 @@ const defaultRoutes = [
   {
     path: '/lists',
     route: listRoute,
+  },
+  {
+    path: '/questions',
+    route: questionRoute,
   },
 ];
 
