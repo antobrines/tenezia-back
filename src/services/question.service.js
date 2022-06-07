@@ -10,12 +10,6 @@ const changeActive = async (_id, value) => {
   });
 };
 
-const getQuestionFromListId = async (idList) => {
-  return await Question.find({
-    idList: idList
-  });
-};
-
 const update = async (_id, questionBody) => {
   return await Question.findByIdAndUpdate(_id, questionBody);
 };
@@ -28,11 +22,35 @@ const addAnswer = async (_id, answerId) => {
   });
 };
 
+const changePosition = async (id, position) => {
+  const questionUpdate = await Question.findById(id);
+  if (questionUpdate.position > position) {
+    position = position - 0.1;
+  } else {
+    position = position + 0.1;
+  }
+  questionUpdate.position = position;
+  await questionUpdate.save();
+  await Question.find({})
+    .sort({ position: 1 })
+    .exec((err, questions) => {
+      if (err) throw err;
+      questions.forEach((question, index) => {
+        Question.findByIdAndUpdate(
+          question._id,
+          { position: index + 1 },
+          (err) => {
+            if (err) throw err;
+          }
+        );
+      });
+    });
+};
 
 module.exports = {
   create,
   changeActive,
-  getQuestionFromListId,
   update,
-  addAnswer
+  addAnswer,
+  changePosition,
 };
